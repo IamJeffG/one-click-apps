@@ -17,6 +17,10 @@ services:
         expose:
             - 8000
         environment:
+            # Windmill uses the database server superuser "postgres".
+            # As long as the postgres deployment is only used for Windmill
+            # this is not the end of the world.
+            # To use windmill with shared databases, see windmill-only.yml
             DATABASE_URL: postgres://postgres:$$cap_postgres_pass@srv-captain--$$cap_appname-postgres/windmill?sslmode=disable
             MODE: server
         depends_on:
@@ -80,7 +84,7 @@ caproverOneClickApp:
                 ```
             Now you can access it at `https://$$cap_appname.$$cap_root_domain`
 
-            Default e-mail is `admin@windmill.dev` and the password is `changeme`
+            Follow the instructions for first-time login: https://www.windmill.dev/docs/advanced/self_host#first-time-login
 
     displayName: Windmill
     isOfficial: true
